@@ -33,7 +33,7 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = "graph.traversal.java.App"
+    mainClassName = "graph.problems.java.App"
 }
 
 val test by tasks.getting(Test::class) {
