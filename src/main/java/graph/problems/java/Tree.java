@@ -21,4 +21,9 @@ public class Tree<T> {
         children.add(newChild);
         return newChild;
     }
+
+    public Tree<T> dfs(T value) {
+        if (this.value == value) { return this; }
+        return null;
+    }
 }
