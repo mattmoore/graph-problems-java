@@ -22,9 +22,9 @@ class NodeTest {
         var sergeant = general.addChild("Sergeant");
         var corporal = general.addChild("Corporal");
 
-        assertEquals("Command Structure", Node.search("Command Structure", commandStructure).value, "finds the first node");
-        assertEquals("General", Node.search("General", commandStructure).value, "finds the second level");
-        assertEquals("Sergeant", Node.search("Sergeant", commandStructure).value, "finds the third level, first neighbor");
-        assertEquals("Corporal", Node.search("Corporal", commandStructure).value, "finds the third level, second neighbor");
+        assertEquals("Command Structure", Node.search("Command Structure", commandStructure, AlgorithmType.DFS).value, "finds the first node");
+        assertEquals("General", Node.search("General", commandStructure, AlgorithmType.DFS).value, "finds the second level");
+        assertEquals("Sergeant", Node.search("Sergeant", commandStructure, AlgorithmType.DFS).value, "finds the third level, first neighbor");
+        assertEquals("Corporal", Node.search("Corporal", commandStructure, AlgorithmType.DFS).value, "finds the third level, second neighbor");
     }
 }
