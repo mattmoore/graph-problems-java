@@ -2,6 +2,11 @@ package graph.problems.java;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NodeTest {
@@ -42,5 +47,18 @@ class NodeTest {
         assertEquals("Sergeant", BFS.search("Sergeant", commandStructure).value, "third level");
         assertEquals("Corporal", BFS.search("Corporal", commandStructure).value, "third level");
         assertEquals("Lieutenant", BFS.search("Lieutenant", commandStructure).value, "fourth level");
+    }
+
+    @Test void getLayerTest() {
+        var commandStructure = new Node("Command Structure");
+        var general = commandStructure.addChild("General");
+        var sergeant = general.addChild("Sergeant");
+        var corporal = general.addChild("Corporal");
+        var lieutenant = corporal.addChild("Lieutenant");
+
+        var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
+        var found = BFS.search("General", commandStructure);
+        var values = found.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
+        assertEquals(expected, values);
     }
 }

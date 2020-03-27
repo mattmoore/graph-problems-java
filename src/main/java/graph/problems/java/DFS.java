@@ -10,7 +10,7 @@ public class DFS {
         return found.get(0);
     }
 
-    public static <T> void traverse(T value, Node<T> node, List<Node<T>> found) {
+    private static <T> void traverse(T value, Node<T> node, List<Node<T>> found) {
         if (node == null) return;
         if (node.value == value) {
             System.out.println("Found it: " + node.value);

@@ -2,6 +2,7 @@ package graph.problems.java;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BFS {
     public static <T> Node<T> search(T value, Node<T> node) {
@@ -10,7 +11,11 @@ public class BFS {
         return found.get(0);
     }
 
-    public static <T> void traverse(T value, Node<T> node, List<Node<T>> found) {
+    public static <T> List<T> nodeValue(List<Node<T>> nodes) {
+        return nodes.stream().map(node -> node.value).collect(Collectors.toList());
+    }
+
+    private static <T> void traverse(T value, Node<T> node, List<Node<T>> found) {
         if (node == null) return;
         if (node.value == value) {
             System.out.println("Found it: " + node.value);
