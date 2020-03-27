@@ -15,8 +15,14 @@ public class BFS {
         if (node.value == value) {
             System.out.println("Found it: " + node.value);
             found.add(node);
+            return;
         }
         for (Node<T> child : node.children) {
+            if (child.value == value) {
+                System.out.println("Found it: " + child.value);
+                found.add(child);
+                return;
+            }
             traverse(value, child, found);
         }
     }

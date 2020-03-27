@@ -15,6 +15,7 @@ public class DFS {
         if (node.value == value) {
             System.out.println("Found it: " + node.value);
             found.add(node);
+            return;
         }
         for (Node<T> child : node.children) {
             traverse(value, child, found);
