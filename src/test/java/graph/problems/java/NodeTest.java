@@ -19,8 +19,8 @@ class NodeTest {
     @Test void dfsTest() {
         var commandStructure = new Node("Command Structure");
         var general = commandStructure.addChild("General");
-        var sergeant = general.addChild("Sergeant");
-        var corporal = general.addChild("Corporal");
+        general.addChild("Sergeant");
+        general.addChild("Corporal");
 
         assertEquals("Command Structure", DFS.search("Command Structure", commandStructure).value, "finds the first node");
         assertEquals("General", DFS.search("General", commandStructure).value, "finds the second level");
