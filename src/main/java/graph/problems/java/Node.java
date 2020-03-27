@@ -21,14 +21,4 @@ public class Node<T> {
         return newChild;
     }
 
-    public static <T> Node<T> search(T value, Node<T> node, AlgorithmType algorithm) {
-        var found = new LinkedList<Node<T>>();
-        switch (algorithm) {
-            case DFS:
-                DFS.search(value, node, found);
-            default:
-                break;
-        }
-        return found.get(0);
-    }
 }
