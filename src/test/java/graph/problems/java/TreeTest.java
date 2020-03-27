@@ -22,6 +22,8 @@ class TreeTest {
         Tree sergeant = general.addChild("Sergeant");
         Tree corporal = general.addChild("Corporal");
 
-        assertEquals("Command Structure", tree.dfs("Command Structure").value, "finds the root node");
+        assertEquals("Command Structure", tree.dfs("Command Structure").value, "finds the first node");
+        assertEquals("General", tree.dfs("General").value, "finds the second level");
+        assertEquals("Sergeant", tree.dfs("Sergeant").value, "finds the third level");
     }
 }

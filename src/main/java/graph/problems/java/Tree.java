@@ -1,7 +1,6 @@
 package graph.problems.java;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Tree<T> {
     public T value;
@@ -9,7 +8,7 @@ public class Tree<T> {
 
     public Tree(T value) {
         this.value = value;
-        this.children = new ArrayList<>();
+        this.children = new LinkedList<>();
     }
 
     public static <T> Tree<T> of(T value) {
@@ -24,6 +23,10 @@ public class Tree<T> {
 
     public Tree<T> dfs(T value) {
         if (this.value == value) { return this; }
+        if (this.children.size() > 0) {
+            Queue<Tree> remainingChildren = new LinkedList<Tree>(this.children);
+            return remainingChildren.remove().dfs(value);
+        }
         return null;
     }
 }
