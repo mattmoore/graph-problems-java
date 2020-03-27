@@ -21,18 +21,20 @@ public class Node<T> {
         return newChild;
     }
 
-//    public static <T> Node<T> search(Node<T> node, T value) {
-//        Node<T> found;
-//
-//        return found;
-//    }
+    public static <T> Node<T> search(T value, Node<T> node) {
+        var found = new LinkedList<Node<T>>();
+        dfs(value, node, found);
+        return found.get(0);
+    }
 
-    public static <T> void dfs(Node<T> node, T value) {
+    public static <T> void dfs(T value, Node<T> node, List<Node<T>> found) {
+        if (node == null) return;
         if (node.value == value) {
             System.out.println("Found it: " + node.value);
+            found.add(node);
         }
         for (Node<T> child : node.children) {
-            dfs(child, value);
+            dfs(value, child, found);
         }
     }
 }
