@@ -70,8 +70,8 @@ class NodeTest {
         var lieutenant = corporal.addChild("Lieutenant");
 
         var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
-        var found = BFS.search("General", commandStructure);
-        var values = found.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
-        assertEquals(expected, values);
+        var nodeFound = BFS.search("General", commandStructure);
+        var nodeChildValues = nodeFound.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
+        assertEquals(expected, nodeChildValues);
     }
 }
