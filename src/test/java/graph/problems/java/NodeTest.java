@@ -61,4 +61,17 @@ class NodeTest {
         var values = found.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
         assertEquals(expected, values);
     }
+
+    @Test void getLayersTest() {
+        var commandStructure = new Node("Command Structure");
+        var general = commandStructure.addChild("General");
+        var sergeant = general.addChild("Sergeant");
+        var corporal = general.addChild("Corporal");
+        var lieutenant = corporal.addChild("Lieutenant");
+
+        var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
+        var found = BFS.search("General", commandStructure);
+        var values = found.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
+        assertEquals(expected, values);
+    }
 }

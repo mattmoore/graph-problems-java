@@ -11,6 +11,16 @@ public class BFS {
         return found.get(0);
     }
 
+    public static <T> List<List<T>> getLayers(Node<T> node) {
+        var layers = new LinkedList<List<T>>();
+        var root = new LinkedList<T>();
+        root.add(node.value);
+        layers.add(root);
+        var layer = node.children.stream().map(child -> child.value).collect(Collectors.toList());
+        layers.add(layer);
+        return layers;
+    }
+
     public static <T> List<T> nodeValue(List<Node<T>> nodes) {
         return nodes.stream().map(node -> node.value).collect(Collectors.toList());
     }
