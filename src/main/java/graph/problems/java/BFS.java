@@ -7,25 +7,25 @@ import java.util.stream.Collectors;
 public class BFS {
     public static <T> Node<T> search(T value, Node<T> node) {
         var found = new LinkedList<Node<T>>();
-        traverse(value, node, found);
+        findNode(value, node, found);
         return found.get(0);
     }
 
-    public static <T> List<List<T>> getLayers(Node<T> node) {
-        var layers = new LinkedList<List<T>>();
-        var root = new LinkedList<T>();
-        root.add(node.value);
-        layers.add(root);
-        var layer = node.children.stream().map(child -> child.value).collect(Collectors.toList());
-        layers.add(layer);
-        return layers;
+    public static <T> List<List<T>> layers(Node<T> root) {
+        var layerList = new LinkedList<List<T>>();
+        var rootEntry = new LinkedList<T>();
+        rootEntry.add(root.value);
+        layerList.add(rootEntry);
+        var layer = root.children.stream().map(child -> child.value).collect(Collectors.toList());
+        layerList.add(layer);
+        return layerList;
     }
 
-    public static <T> List<T> nodeValue(List<Node<T>> nodes) {
+    public static <T> List<T> nodeValues(List<Node<T>> nodes) {
         return nodes.stream().map(node -> node.value).collect(Collectors.toList());
     }
 
-    private static <T> void traverse(T value, Node<T> node, List<Node<T>> found) {
+    private static <T> void findNode(T value, Node<T> node, List<Node<T>> found) {
         if (node == null) return;
         if (node.value == value) {
             System.out.println("Found it: " + node.value);
@@ -38,7 +38,7 @@ public class BFS {
                 found.add(child);
                 return;
             }
-            traverse(value, child, found);
+            findNode(value, child, found);
         }
     }
 }

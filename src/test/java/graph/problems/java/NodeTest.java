@@ -49,20 +49,7 @@ class NodeTest {
         assertEquals("Lieutenant", BFS.search("Lieutenant", commandStructure).value, "fourth level");
     }
 
-    @Test void getLayerTest() {
-        var commandStructure = new Node("Command Structure");
-        var general = commandStructure.addChild("General");
-        var sergeant = general.addChild("Sergeant");
-        var corporal = general.addChild("Corporal");
-        var lieutenant = corporal.addChild("Lieutenant");
-
-        var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
-        var found = BFS.search("General", commandStructure);
-        var values = found.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
-        assertEquals(expected, values);
-    }
-
-    @Test void getLayersTest() {
+    @Test void nodeValuesTest() {
         var commandStructure = new Node("Command Structure");
         var general = commandStructure.addChild("General");
         var sergeant = general.addChild("Sergeant");
@@ -71,7 +58,20 @@ class NodeTest {
 
         var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
         var nodeFound = BFS.search("General", commandStructure);
-        var nodeChildValues = nodeFound.children.stream().map(node -> ((Node<String>)node).value).collect(Collectors.toList());
+        var nodeChildValues = BFS.nodeValues(nodeFound.children);
+        assertEquals(expected, nodeChildValues);
+    }
+
+    @Test void layersTest() {
+        var commandStructure = new Node("Command Structure");
+        var general = commandStructure.addChild("General");
+        var sergeant = general.addChild("Sergeant");
+        var corporal = general.addChild("Corporal");
+        var lieutenant = corporal.addChild("Lieutenant");
+
+        var expected = new LinkedList<>(Arrays.asList("Sergeant", "Corporal"));
+        var nodeFound = BFS.search("General", commandStructure);
+        var nodeChildValues = BFS.nodeValues(nodeFound.children);
         assertEquals(expected, nodeChildValues);
     }
 }
